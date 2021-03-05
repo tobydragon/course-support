@@ -1,0 +1,1 @@
+export const exampleOf18Students = ["Bob",  "Kate",  "Maria",  "Kizito",  "Carolyn",  "Katie",  "Belinda",  "Jose",  "Aaron",  "Kaitlyn",  "Karen",  "Jocelyn",  "Jared",  "Wendy",  "David",  "Dennis",  "Quin",  "Sean"]
