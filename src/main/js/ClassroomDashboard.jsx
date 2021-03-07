@@ -1,27 +1,31 @@
 import { useState } from "react";
 import { AttendanceChecker } from "./AttendanceChecker";
+import { SingleStudentSelector } from "./SingleStudentSelector";
 
 export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
-    let rosterMapStart = new Map();
-    props.studentNames.forEach(studentName=>(rosterMapStart.set(studentName, "present")));
-    const [roster, setRoster] = useState(rosterMapStart);
+    const [presentRoster, setPresentRoster] = useState(props.studentNames);
+    const [absentRoster, setAbsentRoster] = useState([]);
 
     //a function to give to others than need to be able to effect change on the data structure
-    const switchStudentStatus = (studentName) => {
-        if(roster.get(studentName)==="present"){
-            roster.set(studentName, "absent");
+    const switchStudentStatus = (studentToSwitch) => {
+        if(presentRoster.includes(studentToSwitch)){
+            setPresentRoster(presentRoster.filter(aStudent=>aStudent!==studentToSwitch));
+            //pass a function that says how to make a new list from the old list 
+            setAbsentRoster(oldRoster => [...oldRoster, studentToSwitch]);
         }
-        else{
-            roster.set(studentName, "present");
+        else if(absentRoster.includes(studentToSwitch)){
+            setAbsentRoster(absentRoster.filter(aStudent=>aStudent!==studentToSwitch));
+            setPresentRoster(oldRoster => [...oldRoster, studentToSwitch]);
         }
-        setRoster(new Map(roster));
+        else {
+            throw new Error("student not found in either roster");
+        }
     }
     
     return (
         <div>
-            <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
-            {Array.from (roster, ([studentName, status])=>(studentName+":" +status + " "))}
+            <AttendanceChecker presentRoster={presentRoster} absentRoster={absentRoster} switchStudentStatus={switchStudentStatus}/>
         </div>
     );
 };

@@ -6,7 +6,7 @@ import {AttendanceChecker} from "../../main/js/AttendanceChecker"
 export const AttendanceCheckerDemo = props => {
     return (
         <div>
-            <AttendanceChecker studentNames={exampleOf18Students} />
+            <AttendanceChecker presentRoster ={["Caitlyn", "Conner"]} absentRoster={["Bill", "Ted"]} switchStudentStatus={(student)=>console.log("switch called on " + student)} />
         </div>
     )
 }

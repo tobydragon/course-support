@@ -7,20 +7,12 @@ export const AttendanceChecker = (props) => {
         props.switchStudentStatus(e.target.name)
     }
 
-    //takes one key-value pair from the props.roster map and creates a single checkbox with listener from it
-    const produceCheckbox = ([studentName, status]) => {
-        if (status === "present"){
-            return <Form.Check defaultChecked onChange={onCheckboxChange} type="checkbox" label={studentName} key={studentName} name={studentName} id={studentName+"checkbox"}/>;
-        } 
-        else {
-            return <Form.Check onChange={onCheckboxChange} type="checkbox" label={studentName} key={studentName} name={studentName} id={studentName+"checkbox"}/>;
-        }
-    }
-
+    console.log(props.presentRoster);
     return (
         <div>
             <legend> Students </legend>
-            {Array.from (props.roster, produceCheckbox)}
+            {props.presentRoster.map(studentName=> <Form.Check defaultChecked onChange={onCheckboxChange} type="checkbox" label={studentName} key={studentName} name={studentName} id={studentName+"checkbox"}/>)}
+            {props.absentRoster.map(studentName=> <Form.Check onChange={onCheckboxChange} type="checkbox" label={studentName} key={studentName} name={studentName} id={studentName+"checkbox"}/>)}
         </div>
     );
 };
