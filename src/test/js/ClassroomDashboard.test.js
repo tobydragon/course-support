@@ -11,7 +11,7 @@ describe('ClassroomDashboard', () => {
         testMap.set("f", "present");
         testMap.set("g", "present");
 
-        expect(presentListFromRosterMap(testMap)).toBe(["a", "c", "f", "g"]);
-        expect(presentListFromRosterMap(new Map())).toBe([]);
+        expect(presentListFromRosterMap(testMap)).toStrictEqual(["a", "c", "f", "g"]);
+        expect(presentListFromRosterMap(new Map())).toStrictEqual([]);
     });
 });

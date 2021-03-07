@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AttendanceChecker } from "./AttendanceChecker";
 
 export const presentListFromRosterMap = (rosterMap) => {
-    throw new Error("Not Implemented");
+    return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] == "present")).map(mapEntry=>mapEntry[0]);
 }
 
 export const ClassroomDashboard = (props) => {
