@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 
@@ -6,10 +7,17 @@ export const selectRandomOneFromList = (list) => {
 }
 
 export const SingleStudentSelector = (props) => {
+    const [studentChosen, setStudentChosen] = useState("Click for first student");
+    
+    const onChooseClick = (e) => {
+        setStudentChosen(selectRandomOneFromList(props.studentsPresent));
+    }
+
     return (
         <div>
             <label> Choose Random student: </label>
-            <Button onClick={selectRandomOneFromList(props.studentsPresent)}>Choose</Button>
+            <Button onClick={onChooseClick}>Choose</Button>
+            {studentChosen}
         </div>
     );
 }

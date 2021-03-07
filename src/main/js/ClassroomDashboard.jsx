@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { AttendanceChecker } from "./AttendanceChecker";
+import { SingleStudentSelector } from "./SingleStudentSelector";
+
+export const presentListFromRosterMap = (rosterMap) => {
+    return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] === "present")).map(mapEntry=>mapEntry[0]);
+}
 
 export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
@@ -22,6 +27,7 @@ export const ClassroomDashboard = (props) => {
         <div>
             <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
             {Array.from (roster, ([studentName, status])=>(studentName+":" +status + " "))}
+            <SingleStudentSelector studentsPresent={presentListFromRosterMap(roster)} />
         </div>
     );
 };
