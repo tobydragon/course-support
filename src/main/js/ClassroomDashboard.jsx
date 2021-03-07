@@ -8,7 +8,7 @@ export const ClassroomDashboard = (props) => {
     const [roster, setRoster] = useState(rosterMapStart);
 
     //a function to give to others than need to be able to effect change on the data structure
-    function switchStudentStatus(studentName){
+    const switchStudentStatus = (studentName) => {
         if(roster.get(studentName)==="present"){
             roster.set(studentName, "absent");
         }
