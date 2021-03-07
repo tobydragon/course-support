@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { AttendanceChecker } from "./AttendanceChecker";
 
+export const presentListFromRosterMap = (rosterMap) => {
+    throw new Error("Not Implemented");
+}
+
 export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
     let rosterMapStart = new Map();
