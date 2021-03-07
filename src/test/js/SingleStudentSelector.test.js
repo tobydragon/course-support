@@ -1,7 +1,7 @@
 
 import {selectRandomOneFromList} from "../../main/js/SingleStudentSelector"
 
-import {exampleOf18Students} from "../resources/examples"
+import {exampleOf18Students} from "./examples/JsonExamples"
 
 
 describe('SingleStudentSelector', () => {
