@@ -16,7 +16,7 @@ export const SingleStudentSelector = (props) => {
     return (
         <Container className="border rounded m-2">
             <Row>
-                <label className="px-2"> Choose Random student: </label>
+                <h6 className="px-2"> Choose Random student: </h6>
             </Row>
             <Row>
                 <Button className="m-2" onClick={onChooseClick}>Choose Next</Button>

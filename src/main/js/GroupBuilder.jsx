@@ -56,7 +56,7 @@ export const GroupBuilder = (props) => {
     return(
         <Container className="border rounded m-2">
             <Row>
-                <label className="px-2"><h4>Make Random Groups: </h4> </label>
+                <label className="px-2"><h6>Make Random Groups: </h6> </label>
             </Row> 
             <Row>
                 <Col>
