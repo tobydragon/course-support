@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-
+import { Container, Row, Button, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 
 export const buildGroups = (student_list, group_size) => {
     let list_to_group = student_list.slice();
@@ -27,7 +26,20 @@ export const buildGroups = (student_list, group_size) => {
         index_of_group_to_remove_from -= 1;
     }
     return groups;
-}
+};
+
+const GroupBuilderControlPanel = (props) => {
+    return (
+        <Container > 
+            <Row>
+                <label className="px-2">Max members: </label>
+                <input onChange={props.onGroupSizeChange} type="range" name="Number In Group" id="groupSizeSlider" min="2" max="5" step="1" value={props.groupSize} />
+                <output className="px-2"><h4>{props.groupSize}</h4></output>
+            </Row>
+            <Button onClick={props.onCreateGroupClick}> Create Group </Button>
+        </Container>
+    );
+};
 
 export const GroupBuilder = (props) => {
     const [groupSize, setGroupSize] = useState(props.defaultGroupSize);
@@ -42,15 +54,21 @@ export const GroupBuilder = (props) => {
     }
 
     return(
-        <div> 
-            <label> Make Random Groups: </label>
-            <label>Choose the maximum group size: </label>
-            <input onChange={onGroupSizeChange} type="range" name="Number In Group" id="groupSizeSlider" min="2" max="5" step="1" value={groupSize} />
-            <output>{groupSize}</output>
-            <Button onClick={onCreateGroupClick}> Create Group </Button>
-            <ul>
-                {groups.map(group=>(<li key={group}> {group.map(student=>student+", ")} </li>))}
-            </ul>
-        </div>
+        <Container className="border rounded m-2">
+            <Row>
+                <label className="px-2"><h4>Make Random Groups: </h4> </label>
+            </Row> 
+            <Row>
+                <Col>
+                    <GroupBuilderControlPanel groupSize={groupSize} onGroupSizeChange={onGroupSizeChange} onCreateGroupClick={onCreateGroupClick} />
+                </Col>
+                <Col>
+                    <ListGroup className="m-2">
+                        {groups.map(group=>(<ListGroupItem key={group}> {group.map(student=>student+", ")} </ListGroupItem>))}
+                    </ListGroup>
+                </Col>
+            </Row>
+        </Container>
     );
-}
+}; 
+
