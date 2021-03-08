@@ -5,8 +5,6 @@ import { SingleStudentSelector } from '../../main/js/SingleStudentSelector';
 
 export const SingleStudentSelectorDemo = (props) => {
     return (
-        <div>
-            <SingleStudentSelector studentsPresent={exampleOf18Students} />
-        </div>
+        <SingleStudentSelector studentsPresent={exampleOf18Students} />
     );
 };
