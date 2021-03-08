@@ -25,28 +25,34 @@ export const buildGroups = (student_list, group_size) => {
     //take one from each group second to last down and add to last, until last has enough
     while (groups[groups.length-1].length < group_size-1 && index_of_group_to_remove_from >= 0){
         const groupToRemoveFrom = groups[index_of_group_to_remove_from];
-        const student = groupToRemoveFrom[groupToRemoveFrom.length-1];
         groups[groups.length-1].push(groupToRemoveFrom.pop());
         index_of_group_to_remove_from -= 1;
     }
     return groups;
-
 }
 
 export const GroupBuilder = (props) => {
     const [groupSize, setGroupSize] = useState(props.defaultGroupSize);
+    const [groups, setGroups] = useState([]);
 
     const onGroupSizeChange = (e) => {
         setGroupSize(e.target.value);
     }
 
+    const onCreateGroupClick = (e) => {
+        setGroups(buildGroups(props.studentsPresent, groupSize));
+    }
+
     return(
         <div> 
             <label> Make Random Groups: </label>
-            <label for="price">Choose the maximum group size: </label>
+            <label>Choose the maximum group size: </label>
             <input onChange={onGroupSizeChange} type="range" name="Number In Group" id="groupSizeSlider" min="2" max="5" step="1" value={groupSize} />
-            <output for="groupSizeSlider">{groupSize}</output>
-            <Button>Create Group</Button>
+            <output>{groupSize}</output>
+            <Button onClick={onCreateGroupClick}> Create Group </Button>
+            <ul>
+                {groups.map(group=>(<li key={group}> {group} </li>))}
+            </ul>
         </div>
     );
 }

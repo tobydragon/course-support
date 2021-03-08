@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AttendanceChecker } from "./AttendanceChecker";
+import { GroupBuilder } from "./GroupBuilder";
 import { SingleStudentSelector } from "./SingleStudentSelector";
 
 export const presentListFromRosterMap = (rosterMap) => {
@@ -28,6 +29,7 @@ export const ClassroomDashboard = (props) => {
             <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
             {Array.from (roster, ([studentName, status])=>(studentName+":" +status + " "))}
             <SingleStudentSelector studentsPresent={presentListFromRosterMap(roster)} />
+            <GroupBuilder studentsPresent={presentListFromRosterMap(roster)} defaultGroupSize={3} />
         </div>
     );
 };

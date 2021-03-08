@@ -6,7 +6,7 @@ import { ClassroomDashboardDemo } from './test/js/ClassroomDashboardDemo';
 function App() {
   return (
     <div className="App">
-      <GroupBuilderDemo />
+      <ClassroomDashboardDemo />
     </div>
   );
 }
