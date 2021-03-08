@@ -2,8 +2,35 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 
-export const buildGroups = (studentList, maxGroupSize) => {
-    throw new Error("Not implemented");
+export const buildGroups = (student_list, group_size) => {
+    // console.log("here");
+    let list_to_group = student_list.slice();
+    const groups = [];
+    let current_group = [];
+    groups.push(current_group);
+    while (list_to_group.length !== 0){
+        if(current_group.length >= group_size){
+            current_group = [];
+            groups.push(current_group);
+        }
+        const ridx = Math.floor(Math.random() * list_to_group.length);
+        const student = list_to_group[ridx];
+        list_to_group = list_to_group.filter(item=>(item !== student));
+        current_group.push(student);
+        // console.log(list_to_group);
+    }
+    let index_of_group_to_remove_from = groups.length-2;
+    
+    //last group will end up with an arbirary amount of people
+    //take one from each group second to last down and add to last, until last has enough
+    while (groups[groups.length-1].length < group_size-1 && index_of_group_to_remove_from >= 0){
+        const groupToRemoveFrom = groups[index_of_group_to_remove_from];
+        const student = groupToRemoveFrom[groupToRemoveFrom.length-1];
+        groups[groups.length-1].push(groupToRemoveFrom.pop());
+        index_of_group_to_remove_from -= 1;
+    }
+    return groups;
+
 }
 
 export const GroupBuilder = (props) => {
