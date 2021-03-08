@@ -28,15 +28,15 @@ export const ClassroomDashboard = (props) => {
     return (
         <Container>
             <Row>
-                <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
-            </Row>
-            <Row>
                 <Col className="col-sm-4">
                     <SingleStudentSelector studentsPresent={presentListFromRosterMap(roster)} />
                 </Col>
                 <Col className="col-sm-8">
                     <GroupBuilder studentsPresent={presentListFromRosterMap(roster)} defaultGroupSize={3} />
                 </Col>
+            </Row>
+            <Row>
+                <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
             </Row>
             <Row>
                 <h4> Debug Info: </h4>
