@@ -10,7 +10,7 @@ export const SingleStudentSelector = (props) => {
     const [studentChosen, setStudentChosen] = useState("-");
     
     const onChooseClick = (e) => {
-        setStudentChosen(selectRandomOneFromList(props.studentsPresent)+", you're turn!");
+        setStudentChosen(selectRandomOneFromList(props.studentsPresent)+", your turn!");
     }
 
     return (
@@ -20,7 +20,7 @@ export const SingleStudentSelector = (props) => {
             </Row>
             <Row>
                 <Button className="m-2" onClick={onChooseClick}>Choose Next</Button>
-                <label className="p-2">{studentChosen}</label>
+                <h4 className="p-2">{studentChosen}</h4>
             </Row>
             
         </Container>

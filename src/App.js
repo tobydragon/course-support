@@ -7,7 +7,7 @@ import { SingleStudentSelectorDemo } from './test/js/SingleStudentSelectorDemo';
 function App() {
   return (
     <div className="App">
-      <SingleStudentSelectorDemo />
+      <ClassroomDashboardDemo />
     </div>
   );
 }

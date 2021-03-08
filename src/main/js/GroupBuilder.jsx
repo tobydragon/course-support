@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 
 
 export const buildGroups = (student_list, group_size) => {
-    // console.log("here");
     let list_to_group = student_list.slice();
     const groups = [];
     let current_group = [];
@@ -17,7 +16,6 @@ export const buildGroups = (student_list, group_size) => {
         const student = list_to_group[ridx];
         list_to_group = list_to_group.filter(item=>(item !== student));
         current_group.push(student);
-        // console.log(list_to_group);
     }
     let index_of_group_to_remove_from = groups.length-2;
     
@@ -51,7 +49,7 @@ export const GroupBuilder = (props) => {
             <output>{groupSize}</output>
             <Button onClick={onCreateGroupClick}> Create Group </Button>
             <ul>
-                {groups.map(group=>(<li key={group}> {group} </li>))}
+                {groups.map(group=>(<li key={group}> {group.map(student=>student+", ")} </li>))}
             </ul>
         </div>
     );
