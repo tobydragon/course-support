@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 
 
-export const GroupSelector = (props) => {
+export const GroupBuilder = (props) => {
     const [groupSize, setGroupSize] = useState(props.defaultGroupSize);
 
     const onGroupSizeChange = (e) => {
