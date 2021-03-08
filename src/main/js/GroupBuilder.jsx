@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 
+export const buildGroups = (studentList, maxGroupSize) => {
+    throw new Error("Not implemented");
+}
 
 export const GroupBuilder = (props) => {
     const [groupSize, setGroupSize] = useState(props.defaultGroupSize);
