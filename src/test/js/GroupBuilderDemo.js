@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {exampleOf18Students} from "./examples/JsonExamples"
-import { GroupBuilder } from '../../main/js/GroupBuilder';
+import GroupBuilder from '../../main/js/GroupBuilder';
 
 export const GroupBuilderDemo = props => {
     return (
@@ -10,3 +10,5 @@ export const GroupBuilderDemo = props => {
         </div>
     );
 };
+
+export default GroupBuilderDemo;

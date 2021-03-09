@@ -15,11 +15,10 @@ export const buildGroups = (student_list, group_size) => {
         const student = list_to_group[ridx];
         list_to_group = list_to_group.filter(item=>(item !== student));
         current_group.push(student);
-    }
-    let index_of_group_to_remove_from = groups.length-2;
-    
+    }    
     //last group will end up with an arbirary amount of people
     //take one from each group second to last down and add to last, until last has enough
+    let index_of_group_to_remove_from = groups.length-2;
     while (groups[groups.length-1].length < group_size-1 && index_of_group_to_remove_from >= 0){
         const groupToRemoveFrom = groups[index_of_group_to_remove_from];
         groups[groups.length-1].push(groupToRemoveFrom.pop());
@@ -71,4 +70,6 @@ export const GroupBuilder = (props) => {
         </Container>
     );
 }; 
+
+export default GroupBuilder;
 

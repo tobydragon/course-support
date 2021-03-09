@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {exampleOf18Students} from "./examples/JsonExamples"
-import {ClassroomDashboard} from "../../main/js/ClassroomDashboard"
+import ClassroomDashboard from "../../main/js/ClassroomDashboard"
 
 export const ClassroomDashboardDemo = (props) => {
     return (
@@ -10,3 +10,5 @@ export const ClassroomDashboardDemo = (props) => {
         </div>
     );
 };
+
+export default ClassroomDashboardDemo;

@@ -24,3 +24,5 @@ export const AttendanceChecker = (props) => {
         </Container>
     );
 };
+
+export default AttendanceChecker;

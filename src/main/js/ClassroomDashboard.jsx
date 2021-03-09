@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { AttendanceChecker } from "./AttendanceChecker";
-import { GroupBuilder } from "./GroupBuilder";
-import { SingleStudentSelector } from "./SingleStudentSelector";
+
+import AttendanceChecker from "./AttendanceChecker";
+import GroupBuilder from "./GroupBuilder";
+import SingleStudentSelector from "./SingleStudentSelector";
 
 export const presentListFromRosterMap = (rosterMap) => {
     return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] === "present")).map(mapEntry=>mapEntry[0]);
@@ -45,3 +46,5 @@ export const ClassroomDashboard = (props) => {
         </Container>
     );
 };
+
+export default ClassroomDashboard;

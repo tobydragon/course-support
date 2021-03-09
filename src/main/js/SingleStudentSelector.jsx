@@ -4,14 +4,14 @@ import { Container, Row, Button } from "react-bootstrap";
 
 export const selectRandomOneFromList = (list) => {
     return list[Math.floor(Math.random() * list.length)];
-}
+};
 
 export const SingleStudentSelector = (props) => {
     const [studentChosen, setStudentChosen] = useState("-");
     
     const onChooseClick = (e) => {
         setStudentChosen(selectRandomOneFromList(props.studentsPresent)+", your turn!");
-    }
+    };
 
     return (
         <Container className="border rounded m-2">
@@ -25,4 +25,6 @@ export const SingleStudentSelector = (props) => {
             
         </Container>
     );
-}
+};
+
+export default SingleStudentSelector;
