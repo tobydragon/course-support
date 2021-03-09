@@ -20,6 +20,8 @@ export const SingleStudentSelector = (props) => {
             </Row>
             <Row>
                 <Button className="m-2" onClick={onChooseClick}>Choose Next</Button>
+            </Row>
+            <Row>
                 <h4 className="p-2">{studentChosen}</h4>
             </Row>
             
