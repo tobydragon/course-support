@@ -1,3 +1,7 @@
+
+## Free-License Resources
+Icon from: https://freeicons.io/education/classroom-education-teacher-teaching-icon-38361#
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
