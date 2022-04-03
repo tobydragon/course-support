@@ -1,10 +1,14 @@
-import {Container, Form} from "react-bootstrap"
+import {Button, Container, Form} from "react-bootstrap"
 
 export const AttendanceChecker = (props) => {
 
     //when a checkbox is changed, whomever created this checker by calling the function they sent with the studentName
     const onCheckboxChange = (e) => {
         props.switchStudentStatus(e.target.name)
+    }
+
+    const onRecordAttendance = (e) => {
+        props.recordAttendance(5);
     }
 
     //takes one key-value pair from the props.roster map and creates a single checkbox with listener from it
@@ -21,6 +25,8 @@ export const AttendanceChecker = (props) => {
         <Container className="border rounded m-2">
             <h6> Attendance </h6>
             {Array.from (props.roster, produceCheckbox)}
+            <Button className="m-2" onClick={onRecordAttendance}>Record Attendance</Button>
+            for day 5
         </Container>
     );
 };

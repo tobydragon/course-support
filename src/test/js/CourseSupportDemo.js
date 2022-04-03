@@ -6,7 +6,7 @@ import CourseSupport from "../../main/js/CourseSupport"
 export const CourseSupportDemo = (props) => {
     return (
         <div>
-            <CourseSupport studentNames={exampleOf18Students} />
+            <CourseSupport courseId="220" studentNames={exampleOf18Students} />
         </div>
     );
 };

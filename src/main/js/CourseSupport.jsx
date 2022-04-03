@@ -7,7 +7,7 @@ const CourseSupport = (props) => {
     return (
         <Container>
             <CourseSupportHeader />
-            <ClassroomDashboard studentNames={props.studentNames} />
+            <ClassroomDashboard courseId={props.courseId} studentNames={props.studentNames} />
         </Container>
     );
 };
