@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {Container, ListGroup, ListGroupItem, Row, Table } from "react-bootstrap"
 
 
@@ -24,11 +25,20 @@ const createAttendanceRow = (studentAttendanceReport) => {
 }
 
 export const AttendanceReportDisplay = (props) => {
+
+    const [courseId, setCourseId] = useState(props.attendanceCourseReport.courseId);
+
+
+    const courseIdChanged = (event) => {
+        setCourseId(event.target.value);
+    }
+
     return (
         
         <Container className="border rounded m-2">
             <Row>
-                <h6> Attendance report for: {props.attendanceCourseReport.courseId}</h6>
+                <h6> Attendance report for: </h6>
+                <input value={courseId} onChange={courseIdChanged}/>
             </Row>
             <Row>
                 <Table>
