@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {Container, ListGroup, ListGroupItem, Row, Table } from "react-bootstrap"
+import {Button, Container, Row, Table } from "react-bootstrap"
+import AttendanceDataService from "./AttendanceDataService";
 
 
 const chooseBootstrapClassByStatus = (status) => {
@@ -27,10 +28,15 @@ const createAttendanceRow = (studentAttendanceReport) => {
 export const AttendanceReportDisplay = (props) => {
 
     const [courseId, setCourseId] = useState(props.attendanceCourseReport.courseId);
+    const [attendanceCourseReport, setAttendanceCourseReport] = useState(props.attendanceCourseReport);
 
 
     const courseIdChanged = (event) => {
         setCourseId(event.target.value);
+    }
+
+    const onSetCourseButtonClick = (event) => {
+        AttendanceDataService.createAttendanceReport(courseId).then( (response) => setAttendanceCourseReport(response.data));
     }
 
     return (
@@ -39,11 +45,12 @@ export const AttendanceReportDisplay = (props) => {
             <Row>
                 <h6> Attendance report for: </h6>
                 <input value={courseId} onChange={courseIdChanged}/>
+                <Button className="m-2" onClick={onSetCourseButtonClick}>Set Course</Button>
             </Row>
             <Row>
                 <Table>
                     <tbody>
-                        {props.attendanceCourseReport.studentReports.map((studentReport) =>(createAttendanceRow(studentReport)))}
+                        {attendanceCourseReport.studentReports.map((studentReport) =>(createAttendanceRow(studentReport)))}
                     </tbody>
                 </Table>
             </Row>

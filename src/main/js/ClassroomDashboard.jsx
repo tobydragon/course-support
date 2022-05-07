@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 import AttendanceChecker from "./AttendanceChecker";
+import AttendanceDataService from "./AttendanceDataService";
 import GroupBuilder from "./GroupBuilder";
 import SingleStudentSelector from "./SingleStudentSelector";
-import AttendanceDataService from "./AttendanceDataService";
 
 export const presentListFromRosterMap = (rosterMap) => {
     return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] === "present")).map(mapEntry=>mapEntry[0]);
@@ -53,10 +53,6 @@ export const ClassroomDashboard = (props) => {
             </Row>
             <Row>
                 <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus} recordAttendance={recordAttendance} />
-            </Row>
-            <Row>
-                <h4> Debug Info: </h4>
-                {Array.from (roster, ([studentName, status])=>(studentName+":" +status + " "))}
             </Row>
         </Container>
     );
