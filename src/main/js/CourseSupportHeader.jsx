@@ -1,13 +1,27 @@
-import { Col, Row, Jumbotron, Image } from "react-bootstrap";
+import { Col, Row, Jumbotron, Image, Container } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
 
 export const CourseSupportHeader = (props) => {
     return (
-        <Jumbotron> 
-            <Row className="justify-content-center align-items-center">
-                    <Image src="./teacherIcon128.png" alt="" />
-                    <h1>DragonLab's Course Support </h1>
-            </Row>
-        </Jumbotron>
+        <Container>
+           <Jumbotron> 
+                <Row className="justify-content-center align-items-center">
+                        <Image src="./teacherIcon128.png" alt="" />
+                        <h1>DragonLab's Course Support </h1>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/attendancereport">Attendance Report</Link>
+                                </li>
+                            </ul>
+                        </nav>
+                </Row>
+            </Jumbotron>
+            <Outlet />
+        </Container>
     );
 };
 

@@ -10,7 +10,7 @@ import { AttendanceReportDisplayDemo } from './test/js/AttendanceReportDisplayDe
 const App = () => {
   return (
     <div className="App">
-      <AttendanceReportDisplayDemo />
+      <CourseSupportDemo />
     </div>
   );
 };
