@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 import AttendanceChecker from "./AttendanceChecker";
+import AttendanceDataService from "./AttendanceDataService";
 import GroupBuilder from "./GroupBuilder";
 import SingleStudentSelector from "./SingleStudentSelector";
 
@@ -15,7 +16,7 @@ export const ClassroomDashboard = (props) => {
     props.studentNames.forEach(studentName=>(rosterMapStart.set(studentName, "present")));
     const [roster, setRoster] = useState(rosterMapStart);
 
-    //a function to give to others than need to be able to effect change on the data structure
+    //give this to other components that need to update attendanceMarks in the rosterMap
     const switchStudentStatus = (studentName) => {
         if(roster.get(studentName)==="present"){
             roster.set(studentName, "absent");
@@ -24,6 +25,20 @@ export const ClassroomDashboard = (props) => {
             roster.set(studentName, "present");
         }
         setRoster(new Map(roster));
+    }
+
+    //give this to other components that need to record attendance to the server
+    const recordAttendance = (dayNumber) => {
+        const attendanceMarks =  Array.from (roster, ([studentName, status])=> (
+            {
+                "studentId": studentName,
+                "courseId": props.courseId,
+                "dayNumber": dayNumber,
+                "status": status
+
+            }));
+        console.log(attendanceMarks);
+        AttendanceDataService.recordAttendance(attendanceMarks);
     }
     
     return (
@@ -37,11 +52,7 @@ export const ClassroomDashboard = (props) => {
                 </Col>
             </Row>
             <Row>
-                <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus}/>
-            </Row>
-            <Row>
-                <h4> Debug Info: </h4>
-                {Array.from (roster, ([studentName, status])=>(studentName+":" +status + " "))}
+                <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus} recordAttendance={recordAttendance} />
             </Row>
         </Container>
     );
