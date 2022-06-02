@@ -11,7 +11,7 @@ const CourseSupport = (props) => {
             <Routes>
                 <Route path="/" element={<CourseSupportHeader />}>
                     <Route index element={<ClassroomDashboard courseId={props.courseId} studentNames={props.studentNames} />} />
-                    <Route path="attendancereport" element={<AttendanceReportDisplay attendanceCourseReport={exampleCourseAttendance} />} />
+                    <Route path="attendancereport" element={<AttendanceReportDisplay attendanceCourseReport={exampleCourseAttendance} allCourseIds={[]} />} />
                 </Route>
             </Routes>
         </BrowserRouter>

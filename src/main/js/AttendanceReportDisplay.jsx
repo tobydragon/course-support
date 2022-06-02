@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Button, Container, Row, Table } from "react-bootstrap"
 import AttendanceDataService from "./AttendanceDataService";
 
@@ -27,16 +27,17 @@ const createAttendanceRow = (studentAttendanceReport) => {
 
 export const AttendanceReportDisplay = (props) => {
 
+    const [allCourseIds, setAllCourseIds] = useState(props.allCourseIds);
     const [courseId, setCourseId] = useState(props.attendanceCourseReport.courseId);
     const [attendanceCourseReport, setAttendanceCourseReport] = useState(props.attendanceCourseReport);
 
-
-    const courseIdChanged = (event) => {
-        setCourseId(event.target.value);
-    }
-
-    const onSetCourseButtonClick = (event) => {
+    useEffect(()=> {
+        AttendanceDataService.getCourseIds().then((response) => setAllCourseIds(response.data));
         AttendanceDataService.createAttendanceReport(courseId).then( (response) => setAttendanceCourseReport(response.data));
+    }, [courseId]);
+
+    const onCourseIdSelected = (e) => {
+        setCourseId(e.target.value);
     }
 
     return (
@@ -44,8 +45,9 @@ export const AttendanceReportDisplay = (props) => {
         <Container className="border rounded m-2">
             <Row>
                 <h6> Attendance report for: </h6>
-                <input value={courseId} onChange={courseIdChanged}/>
-                <Button className="m-2" onClick={onSetCourseButtonClick}>Set Course</Button>
+                <select value={courseId} onChange={onCourseIdSelected} >
+                {allCourseIds.map((aCourseId) => <option value={aCourseId}>{aCourseId}</option>)}
+            </select>
             </Row>
             <Row>
                 <Table>

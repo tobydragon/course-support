@@ -6,8 +6,11 @@ class AttendanceDataService {
         return axiosInstance.get("/attendanceMarks");
     }
 
+    getCourseIds(){
+        return axiosInstance.get("/courseIds");
+    }
+
     recordAttendance(attendanceMarks){
-        console.log("In recordAttendance, marks:", attendanceMarks);
         return axiosInstance.post("/attendanceMarks", attendanceMarks);
     }
 
