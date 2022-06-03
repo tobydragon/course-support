@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Button, Container, Row, Table } from "react-bootstrap"
+import {Container, Row, Table } from "react-bootstrap"
 import AttendanceDataService from "./AttendanceDataService";
 
 
@@ -27,28 +27,15 @@ const createAttendanceRow = (studentAttendanceReport) => {
 
 export const AttendanceReportDisplay = (props) => {
 
-    const [allCourseIds, setAllCourseIds] = useState(props.allCourseIds);
-    const [courseId, setCourseId] = useState(props.attendanceCourseReport.courseId);
     const [attendanceCourseReport, setAttendanceCourseReport] = useState(props.attendanceCourseReport);
 
     useEffect(()=> {
-        AttendanceDataService.getCourseIds().then((response) => setAllCourseIds(response.data));
-        AttendanceDataService.createAttendanceReport(courseId).then( (response) => setAttendanceCourseReport(response.data));
-    }, [courseId]);
-
-    const onCourseIdSelected = (e) => {
-        setCourseId(e.target.value);
-    }
+        AttendanceDataService.createAttendanceReport(props.courseId).then( (response) => setAttendanceCourseReport(response.data));
+    }, [props.courseId]);
 
     return (
         
         <Container className="border rounded m-2">
-            <Row>
-                <h6> Attendance report for: </h6>
-                <select value={courseId} onChange={onCourseIdSelected} >
-                {allCourseIds.map((aCourseId) => <option value={aCourseId}>{aCourseId}</option>)}
-            </select>
-            </Row>
             <Row>
                 <Table>
                     <tbody>

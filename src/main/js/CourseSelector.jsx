@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import AttendanceDataService from "./AttendanceDataService";
+
 export const CourseSelector = (props) => {
 
     const [allCourseIds, setAllCourseIds] = useState(props.allCourseIds);
@@ -18,4 +21,4 @@ export const CourseSelector = (props) => {
                 
 };
 
-export default CourseSupportHeader;
+export default CourseSelector;

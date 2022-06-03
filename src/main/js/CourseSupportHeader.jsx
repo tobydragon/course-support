@@ -1,5 +1,6 @@
-import { Col, Row, Jumbotron, Image, Container } from "react-bootstrap";
+import { Row, Jumbotron, Image, Container } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
+import { CourseSelector } from "./CourseSelector";
 
 export const CourseSupportHeader = (props) => {
     return (
