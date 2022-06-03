@@ -19,6 +19,9 @@ export const CourseSupportHeader = (props) => {
                             </ul>
                         </nav>
                 </Row>
+                <Row>
+                    <CourseSelector courseId={props.courseId} allCourseIds={props.allCourseIds} onCourseIdSelected={props.onCourseIdSelected} />
+                </Row>
             </Jumbotron>
             <Outlet />
         </Container>
