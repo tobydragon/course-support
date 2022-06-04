@@ -1,4 +1,4 @@
-const attendanceMarksExample = 
+export const attendanceMarksExample = 
 [ {
     "id" : 0,
     "studentId" : "Katie",
@@ -10,13 +10,13 @@ const attendanceMarksExample =
     "studentId" : "Belinda",
     "courseId" : "COMP220",
     "dayNumber" : 6,
-    "status" : "absent"
+    "status" : "present"
   }, {
     "id" : 0,
     "studentId" : "Jose",
     "courseId" : "COMP220",
     "dayNumber" : 6,
-    "status" : "absent"
+    "status" : "present"
   }, {
     "id" : 0,
     "studentId" : "Aaron",
@@ -30,3 +30,4 @@ const attendanceMarksExample =
     "dayNumber" : 6,
     "status" : "absent"
   } ]
+  ;

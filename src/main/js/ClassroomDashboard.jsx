@@ -10,11 +10,34 @@ export const presentListFromRosterMap = (rosterMap) => {
     return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] === "present")).map(mapEntry=>mapEntry[0]);
 }
 
+
+export const rosterMapFromNameList = (nameList) => {
+    let rosterMap = new Map();
+    nameList.forEach(studentName=>(rosterMap.set(studentName, "present")));
+    return rosterMap;
+}
+
+export const rosterMapFromAttendanceMarks = (attendanceMarks) => {
+    if (attendanceMarks !== null && attendanceMarks !== 0){
+        let rosterMap = new Map();
+        attendanceMarks.forEach(attendanceMark=>(rosterMap.set(attendanceMark.studentId, attendanceMark.status)));
+        return rosterMap;
+    }
+    else {
+        return new Map();
+    }
+    
+}
+
+export const dayNumberFromAttendanceMarks = (attendanceMarks) => {
+    // console.log("In dayNumberFromAttendanceMarks: ");
+    // console.log(attendanceMarks);
+    return attendanceMarks !== null && attendanceMarks.length > 0 ? attendanceMarks[0].dayNumber : 1;
+}
+
 export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
-    let rosterMapStart = new Map();
-    props.studentNames.forEach(studentName=>(rosterMapStart.set(studentName, "present")));
-    const [roster, setRoster] = useState(rosterMapStart);
+    const [roster, setRoster] = useState(rosterMapFromNameList(props.studentNames));
 
     //give this to other components that need to update attendanceMarks in the rosterMap
     const switchStudentStatus = (studentName) => {
