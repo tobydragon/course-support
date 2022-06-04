@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 import AttendanceChecker from "./AttendanceChecker";
@@ -9,7 +9,6 @@ import SingleStudentSelector from "./SingleStudentSelector";
 export const presentListFromRosterMap = (rosterMap) => {
     return Array.from(rosterMap).filter( mapEntry => (mapEntry[1] === "present")).map(mapEntry=>mapEntry[0]);
 }
-
 
 export const rosterMapFromNameList = (nameList) => {
     let rosterMap = new Map();
@@ -25,19 +24,30 @@ export const rosterMapFromAttendanceMarks = (attendanceMarks) => {
     }
     else {
         return new Map();
-    }
-    
+    }   
 }
 
 export const dayNumberFromAttendanceMarks = (attendanceMarks) => {
-    // console.log("In dayNumberFromAttendanceMarks: ");
-    // console.log(attendanceMarks);
     return attendanceMarks !== null && attendanceMarks.length > 0 ? attendanceMarks[0].dayNumber : 1;
 }
+
+
 
 export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
     const [roster, setRoster] = useState(rosterMapFromNameList(props.studentNames));
+    const [dayNumber, setDayNumber] = useState(1);
+    
+    useEffect(()=> {
+        AttendanceDataService.getRecentAttendanceMarks(props.courseId).then((response) => updateFromAttendanceMarks(response.data));
+    }, [props.courseId]);
+
+
+    const updateFromAttendanceMarks = (attendanceMarks) => {
+        console.log(rosterMapFromAttendanceMarks(attendanceMarks));
+        setDayNumber(dayNumberFromAttendanceMarks(attendanceMarks) + 1);
+        setRoster(rosterMapFromAttendanceMarks(attendanceMarks));
+    }
 
     //give this to other components that need to update attendanceMarks in the rosterMap
     const switchStudentStatus = (studentName) => {
@@ -60,7 +70,6 @@ export const ClassroomDashboard = (props) => {
                 "status": status
 
             }));
-        console.log(attendanceMarks);
         AttendanceDataService.recordAttendance(attendanceMarks);
     }
     
@@ -75,7 +84,7 @@ export const ClassroomDashboard = (props) => {
                 </Col>
             </Row>
             <Row>
-                <AttendanceChecker roster={roster} switchStudentStatus={switchStudentStatus} recordAttendance={recordAttendance} />
+                <AttendanceChecker roster={roster} dayNumber={dayNumber} switchStudentStatus={switchStudentStatus} setDayNumber={setDayNumber} recordAttendance={recordAttendance} />
             </Row>
         </Container>
     );

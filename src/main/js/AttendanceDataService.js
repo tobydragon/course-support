@@ -6,8 +6,8 @@ class AttendanceDataService {
         return axiosInstance.get("/attendanceMarks");
     }
 
-    getRecentAttendanceMarks(){
-        return axiosInstance.get("/recentAttendanceMarks");
+    getRecentAttendanceMarks(courseId){
+        return axiosInstance.get("/recentAttendanceMarks", {params: {courseId: courseId}});
     }
 
     getCourseIds(){

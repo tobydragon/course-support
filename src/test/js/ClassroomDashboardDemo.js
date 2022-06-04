@@ -6,7 +6,7 @@ import ClassroomDashboard from "../../main/js/ClassroomDashboard"
 export const ClassroomDashboardDemo = (props) => {
     return (
         <div>
-            <ClassroomDashboard studentNames={exampleOf18Students} />
+            <ClassroomDashboard studentNames={exampleOf18Students} courseId={"COMP171"} />
         </div>
     );
 };

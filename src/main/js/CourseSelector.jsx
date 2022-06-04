@@ -15,7 +15,7 @@ export const CourseSelector = (props) => {
 
     return (
         <select value={props.courseId} onChange={onCourseIdSelected} >
-            {allCourseIds.map((aCourseId) => <option value={aCourseId}>{aCourseId}</option>)}
+            {allCourseIds.map((aCourseId) => <option key={aCourseId} value={aCourseId}> {aCourseId} </option>)}
         </select>
     );
                 
