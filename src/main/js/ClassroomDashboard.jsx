@@ -37,16 +37,18 @@ export const ClassroomDashboard = (props) => {
     //Make the data structure that will track students marked absent or present
     const [roster, setRoster] = useState(rosterMapFromNameList(props.studentNames));
     const [dayNumber, setDayNumber] = useState(1);
+    const [attendanceMode, setAttendanceMode] = useState("newDay"); //must be either "newDay" or "updateDay"
     
     useEffect(()=> {
-        AttendanceDataService.getRecentAttendanceMarks(props.courseId).then((response) => updateFromAttendanceMarks(response.data));
+        AttendanceDataService.getRecentAttendanceMarks(props.courseId).then((response) => updateFromAttendanceMarks(response.data, "newDay"));
     }, [props.courseId]);
 
 
-    const updateFromAttendanceMarks = (attendanceMarks) => {
+    const updateFromAttendanceMarks = (attendanceMarks, attendanceMode) => {
         console.log(rosterMapFromAttendanceMarks(attendanceMarks));
         setDayNumber(dayNumberFromAttendanceMarks(attendanceMarks) + 1);
         setRoster(rosterMapFromAttendanceMarks(attendanceMarks));
+        setAttendanceMode(attendanceMode);
     }
 
     //give this to other components that need to update attendanceMarks in the rosterMap
@@ -61,7 +63,7 @@ export const ClassroomDashboard = (props) => {
     }
 
     //give this to other components that need to record attendance to the server
-    const recordAttendance = (dayNumber) => {
+    const recordAttendance = () => {
         const attendanceMarks =  Array.from (roster, ([studentName, status])=> (
             {
                 "studentId": studentName,
@@ -84,7 +86,7 @@ export const ClassroomDashboard = (props) => {
                 </Col>
             </Row>
             <Row>
-                <AttendanceChecker roster={roster} dayNumber={dayNumber} switchStudentStatus={switchStudentStatus} setDayNumber={setDayNumber} recordAttendance={recordAttendance} />
+                <AttendanceChecker attendanceMode={attendanceMode} roster={roster} dayNumber={dayNumber} switchStudentStatus={switchStudentStatus} setDayNumber={setDayNumber} recordAttendance={recordAttendance} />
             </Row>
         </Container>
     );

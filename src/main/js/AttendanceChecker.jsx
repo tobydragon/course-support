@@ -1,18 +1,17 @@
 import {Button, Container, Form} from "react-bootstrap"
 
-export const AttendanceChecker = (props) => {
-
-    const produceDayNumbers = (lastDayNumber) => {
-        let dayNumbers = [];
-        for (var dayNum= 1; dayNum <= lastDayNumber; dayNum++) {
-            dayNumbers.push(dayNum);
-        }
-        return dayNumbers; 
+const produceDayNumbers = (lastDayNumber) => {
+    let dayNumbers = [];
+    for (var dayNum= 1; dayNum <= lastDayNumber; dayNum++) {
+        dayNumbers.push(dayNum);
     }
+    return dayNumbers; 
+}
+
+export const AttendanceChecker = (props) => {
 
     const dayNumbers = produceDayNumbers(58);
 
-    //when a checkbox is changed, whomever created this checker by calling the function they sent with the studentName
     const onCheckboxChange = (e) => {
         props.switchStudentStatus(e.target.name)
     }
@@ -22,7 +21,7 @@ export const AttendanceChecker = (props) => {
     }
 
     const onRecordAttendance = (e) => {
-        props.recordAttendance(props.dayNumber);
+        props.recordAttendance();
     }
 
     //takes one key-value pair from the props.roster map and creates a single checkbox with listener from it
